@@ -72,6 +72,7 @@ const handleNoteSave = () => {
     text: noteText.value,
   };
   saveNote(newNote).then(() => {
+    //do i need the response.json()?
     getAndRenderNotes();
     renderActiveNote();
   });
