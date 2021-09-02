@@ -13,19 +13,19 @@ Users are able to add new notes by clicking on the Save icon, which appears in t
 * Express.js
 
 ## Deployed application
-
+<https://obscure-taiga-58114.herokuapp.com/>
 
 ## Contribution
 < > with ❤️  by Serena Guo
 
 ## Screenshots
 Landing page:
-
 ![the screenshot of the site](snapshots/screenshot.png)
 
-Write a note:
 
+Write a note:
 ![the screenshot of the command-line](snapshots/screenshot2.png)
+
 
 Save a note:
 ![the screenshot of the command-line](snapshots/screenshot3.png)
