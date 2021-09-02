@@ -7,9 +7,6 @@ const app = express();
 
 let notes = require('./db/db.json');
 
-// can't notes be updaed?? it is an array????
-// const notes = require('./db/db.json')????
-
 //parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
 //parse incoming JSON data into JS Obj
@@ -18,11 +15,9 @@ app.use(express.json());
 //instructs the server to make certain files readily available 
 app.use(express.static('public'));
 
-
-//why home page is auto connected????
-//this home route not working????
+//handle home route
 app.get('/', (req, res) => {
-    res.send('Connected!');
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 //handle render notes.html
@@ -43,19 +38,22 @@ app.post('/api/notes', (req, res) => {
     fs.writeFileSync(path.join(__dirname, './db/db.json'),
         JSON.stringify(notes, null, 2)
     );
-    // what should i send back????
     res.json(note);
 });
 
 //handle delete route
 app.delete('/api/notes/:id', (req, res)=>{
-    //if using const, can't assign it???? 
-    notes = notes.filter(note => note.id !== id);
+    notes = notes.filter(note => note.id !== req.params.id);
     fs.writeFileSync(path.join(__dirname, './db/db.json'),
         JSON.stringify(notes, null, 2)
     );
     res.json(notes);
 });
+
+//wildcard route to catch endpoints that doesn't exist
+app.get('*', (req, res) =>{
+    res.sendFile(path.join(__dirname, './public/index.html'));
+})
 
 //set up server on port 3000
 app.listen(PORT, () => {
